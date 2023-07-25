@@ -2,6 +2,24 @@
 
 This assignment uses the `snowflake_sample_data` database and the `tpcds_sf10tcl` schema to run Snowflake queries using a Streamlit app.
 
+
+## Prerequisites
+
+- A Snowflake account. If you don't have one, you can create one on the Snowflake website.
+- Docker installed on your machine. If not, you can download it from the Docker website.
+
+
+## Setup
+
+1. Clone this repository
+2. Create a virtual environment
+3. Install dependencies
+4. Run Streamlit app on local machine or build and run Docker container
+5. Access app at `http://localhost:8090`
+6. The app is also hosted on GP at `http://<gcp-url>:8090`
+7. Enter your Snowflake username, password, account identifier, database name, and schema name as user input in the Streamlit app.
+
+
 ## Queries
 
 1. Calculate the average sales quantity, average sales price, average wholesale cost, total wholesale cost for store sales of different customer types (e.g., based on marital status, education status) including their household demographics, sales price and different combinations of state and sales profit for a given year.
@@ -24,17 +42,14 @@ This assignment uses the `snowflake_sample_data` database and the `tpcds_sf10tcl
 6. Compute, for each county, the average quantity, list price, coupon amount, sales price, net profit, age, and number of dependents for all items purchased through catalog sales in a given year by customers who were born in a given list of six months and living in a given list of seven states and who also belong to a given gender and education demographic.
 
 
-## Setup
+## Docker Setup
 
-To run this project on your local machine or on GCP:
+1. Open a terminal or command prompt and navigate to the directory where your Dockerfile is located.
+2. Build the Docker image by running the command `docker build -t <image-name> .` where `<image-name>` is the name you want to give to your image.
+3. Once the image is built, you can run a container from it by running the command `docker run -p <host-port>:<container-port> <image-name>` where `<host-port>` is the port on your host machine that you want to map to the container's port `<container-port>`.
+4. Access your app at `http://localhost:<host-port>`.
 
-1. Clone this repository
-2. Create a virtual environment
-3. Install dependencies
-4. Make sure you have Docker installed on your machine. If not, you can download it from the Docker website.
-5. Open a terminal or command prompt and navigate to the directory where your Dockerfile is located.
-6. Build the Docker image by running the command `docker build -t <image-name> .` where `<image-name>` is the name you want to give to your image.
-7. Once the image is built, you can run a container from it by running the command `docker run -p <host-port>:<container-port> <image-name>` where `<host-port>` is the port on your host machine that you want to map to the container's port `<container-port>`.
 
-   
-8. The app is also hosted on GCP at `http://<gcp-url>:8090`
+##Additional Resources
+
+For more detailed information about the project, including snapshots of the working application, please refer to this codelab.
