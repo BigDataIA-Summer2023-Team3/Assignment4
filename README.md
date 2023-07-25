@@ -52,4 +52,6 @@ This assignment uses the `snowflake_sample_data` database and the `tpcds_sf10tcl
 
 ## Additional Resources
 
-For more detailed information about the project, including snapshots of the working application, please refer to this codelab.
+- For more detailed information about the project, including snapshots of the working application, please refer to this codelab.
+- Sample queries - http://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v2.5.0.pdf
+- query templates - https://github.com/gregrahn/tpcds-kit/tree/master/query_templates
