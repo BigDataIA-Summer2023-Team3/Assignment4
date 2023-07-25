@@ -50,6 +50,6 @@ This assignment uses the `snowflake_sample_data` database and the `tpcds_sf10tcl
 4. Access your app at `http://localhost:<host-port>`.
 
 
-##Additional Resources
+## Additional Resources
 
 For more detailed information about the project, including snapshots of the working application, please refer to this codelab.
