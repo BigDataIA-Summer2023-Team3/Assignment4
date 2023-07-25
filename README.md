@@ -14,9 +14,9 @@ This assignment uses the `snowflake_sample_data` database and the `tpcds_sf10tcl
 1. Clone this repository
 2. Create a virtual environment
 3. Install dependencies
-4. Run Streamlit app on local machine or build and run Docker container
+4. Run [Streamlit](./streamlit/) app on local machine or build and run Docker container
 5. Access app at `http://localhost:8090`
-6. The app is also hosted on GP at `http://<gcp-url>:8090`
+6. The app is also hosted on GP at `http://34.23.24.122:8090`
 7. Enter your Snowflake username, password, account identifier, database name, and schema name as user input in the Streamlit app.
 
 
@@ -52,6 +52,6 @@ This assignment uses the `snowflake_sample_data` database and the `tpcds_sf10tcl
 
 ## Additional Resources
 
-- For more detailed information about the project, including snapshots of the working application, please refer to this codelab.
+- For more detailed information about the project, including snapshots of the working application, please refer to this [codelab](https://codelabs-preview.appspot.com/?file_id=1e__CVGs_zvpN6vI1dqoupWs6-RuzQxQEhrv7MNo2njM#1)
 - Sample queries - http://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v2.5.0.pdf
 - query templates - https://github.com/gregrahn/tpcds-kit/tree/master/query_templates
