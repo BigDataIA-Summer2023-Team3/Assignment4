@@ -1,3 +1,2 @@
 streamlit
-sqlalchemy
-snowflake-sqlalchemy
+snowflake-snowpark-python[pandas]

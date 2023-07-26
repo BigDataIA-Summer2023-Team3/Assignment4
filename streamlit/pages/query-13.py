@@ -1,6 +1,6 @@
 import streamlit as st
 #from sqlalchemy import create_engine
-from intro import engine
+from intro import conn
 
 st.write("## Query 13")
 st.write("### Calculate the average sales quantity, average sales price, average wholesale cost, total wholesale cost for store sales of different customer types (e.g., based on marital status, education status) including their household demographics, sales price and different combinations of state and sales profit for a given year.")
@@ -12,12 +12,12 @@ ms = st.selectbox("MS", options=["M", "S", "W"])
 
 
 # Save selected parameter values in session state
-if "query_parameters" not in st.session_state:
-    st.session_state.query_parameters = {}
-st.session_state.query_parameters["d_year"] = d_year
-st.session_state.query_parameters["state"] = state
-st.session_state.query_parameters["education status"] = es
-st.session_state.query_parameters["marital status"] = ms
+# if "query_parameters" not in st.session_state:
+#     st.session_state.query_parameters = {}
+# st.session_state.query_parameters["d_year"] = d_year
+# st.session_state.query_parameters["state"] = state
+# st.session_state.query_parameters["education status"] = es
+# st.session_state.query_parameters["marital status"] = ms
 #st.session_state.query_parameters["limit_value"] = limit_value
 
 # Query with placeholders for parameters
@@ -54,35 +54,26 @@ WHERE
 """
 
 
-# Button to generate query result and save it in session state
+# Function to generate query result and save it in cache
+@st.cache_data
+def generate_query_result(state, es, ms, d_year, limit_value):
+    # Format query with selected parameter values
+    query = query_template.format(state=state, es=es, ms=ms, d_year=d_year, limit_value=limit_value)
+    
+    # Execute query and save result in cache
+    results = conn.query(query, ttl=600)
+    
+    return results
+
+# Button to generate query result and display it
 if st.button("Generate Query Result"):
-    # Check if selected parameter values are the same as previous values
-    if "previous_query_parameters" in st.session_state and st.session_state.previous_query_parameters == st.session_state.query_parameters:
-        # Display previously saved query result from session state
-        if "query_result0" in st.session_state:
-            st.table(st.session_state.query_result0)
-    else:
-        # Format query with selected parameter values
-        query = query_template.format(state=state, es=es, ms=ms, d_year=d_year)
+    # Generate query result and save it in cache
+    with st.spinner("Executing query..."):
+        results = generate_query_result(state, es, ms, d_year, limit_value=10)
         
-        # Execute query and save result in session state
-        with st.spinner("Executing query..."):
-            try:
-                connection = engine.connect()
-                results = connection.execute(query).fetchall()
-                st.session_state.query_result0 = results
-                
-                # Display success message and result table if result is not empty
-                st.success("Query executed successfully!")
-                if results:
-                    st.table(results)
-                else:
-                    st.warning("No results found.")
-                    
-            finally:
-                if 'connection' in locals():
-                    connection.close()
-                engine.dispose()
-        
-        # Save current parameter values as previous values in session state
-        st.session_state.previous_query_parameters = dict(st.session_state.query_parameters)
+        # Display success message and result table if result is not empty
+        st.success("Query executed successfully!")
+        if not results.empty:
+            st.table(results)
+        else:
+            st.warning("No results found.")
