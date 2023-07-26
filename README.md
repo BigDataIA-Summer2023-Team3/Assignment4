@@ -14,10 +14,11 @@ This assignment uses the `snowflake_sample_data` database and the `tpcds_sf10tcl
 1. Clone this repository
 2. Create a virtual environment
 3. Install dependencies
-4. Run [Streamlit](./streamlit/) app on local machine or build and run Docker container
-5. Access app at `http://localhost:8090`
-6. The app is also hosted on GP at `http://34.23.24.122:8090`
-7. Enter your Snowflake username, password, account identifier, database name, and schema name as user input in the Streamlit app.
+4. Create .streamlit/secrets.toml file in streamlit directory
+5. Enter your Snowflake username, password, account identifier, database name, schema name, warehouse, and role in the secrets.toml file
+6. Run [Streamlit](./streamlit/) app on local machine or build and run Docker container
+7. Access app at `http://localhost:8090`
+8. The app is also hosted on GP at `http://34.23.24.122:8090`
 
 
 ## Queries
